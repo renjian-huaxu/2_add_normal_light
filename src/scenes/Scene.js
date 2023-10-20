@@ -13,15 +13,15 @@ export default class Scene {
     }
 
     removeObject(object) {
-        for (var i = 0, l = this.objects.length; i < l; i++) {
 
-            if (object == this.objects[i]) {
+        this.objects.forEach((o, index) => {
+            if (object == o) {
 
-                this.objects.splice(i, 1);
+                this.objects.splice(index, 1);
                 return;
 
             }
-        }
+        })
     }
 
     addLight(light) {
@@ -29,15 +29,14 @@ export default class Scene {
     }
 
     removeLight(light) {
-        for (var i = 0, l = this.lights.length; i < l; i++) {
+        this.lights.forEach((l, index) => {
+            if (light == l) {
 
-            if (light == this.lights[i]) {
-
-                this.lights.splice(i, 1);
+                this.lights.splice(index, 1);
                 return;
 
             }
-        }
+        })
     }
 
     add(object) {

@@ -11,22 +11,18 @@ export default class Geometry {
     }
 
     computeNormals() {
-		var v, f, vA, vB, vC, cb, ab;
+		
+		this.vertices.forEach(vertex => {
+			vertex.normal.set( 0, 0, 0 )
+		})
 
-		for ( v = 0; v < this.vertices.length; v++ ) {
+		this.faces.forEach(face => {
+			const vA = this.vertices[ face.a ];
+			const vB = this.vertices[ face.b ];
+			const vC = this.vertices[ face.c ];
 
-			this.vertices[ v ].normal.set( 0, 0, 0 );
-
-		}
-
-		for ( f = 0; f < this.faces.length; f++ ) {
-
-			vA = this.vertices[ this.faces[ f ].a ];
-			vB = this.vertices[ this.faces[ f ].b ];
-			vC = this.vertices[ this.faces[ f ].c ];
-
-			cb = new Vector3();
-			ab = new Vector3();
+			const cb = new Vector3();
+			const ab = new Vector3();
 
 			cb.sub( vC.position, vB.position );
 			ab.sub( vA.position, vB.position );
@@ -38,9 +34,8 @@ export default class Geometry {
 
 			}
 
-			this.faces[ f ].normal = cb;
-
-		}
+			face.normal = cb;
+		});
 
     }
 }
