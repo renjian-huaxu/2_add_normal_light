@@ -11,9 +11,9 @@ const watchOptions = {
       file: './build/MThree.js'
   },
   plugins: [
-        // babel({ 
-        //     exclude: ['node_modules/**']
-        // })
+        babel({ 
+            exclude: ['node_modules/**']
+        })
     ]
 }
 const watcher = rollup.watch(watchOptions);
